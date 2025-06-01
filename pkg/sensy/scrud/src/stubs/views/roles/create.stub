@@ -1,0 +1,43 @@
+<x-scrud::admin-layout>
+    @slot('title', $title)
+    <x-scrud::backend.layouts.breadcrumbs :hasLink="true" link="{{ route('roles.index') }}" :heading="$title"
+        :main="$title" :sub="$sub_title" />
+
+    @php
+        $route = $sub_title === 'create' ? route('roles.store') : route('roles.update', $data->id);
+    @endphp
+
+
+    <div class="card mt-2">
+        <form action="{{ $route }}" method="POST">
+            @csrf
+            @if ($sub_title !== 'create')
+                @method('PUT')
+            @endif
+
+            <div class="row card-body mt-5 border-bottom border-black">
+                <x-scrud::dynamics.forms.input col='6' model='name' type='text' label='Name' :option='[]'
+                    value="{{ isset($data) ? $data->name : old('name') }}" />
+
+                {{-- <x-scrud::dynamics.forms.input :disabled='true' col='6' model='guard_name' type='text'
+                    label='Guard Name' :option='[]' value='web' /> --}}
+
+                <div class="row card-body mt-5">
+                    <label class='fw-bold'>Permissions</label>
+                    @foreach ($permissions as $permission)
+                        <x-scrud::dynamics.forms.input col='3' model='permissions[]' type='checkbox' checkbox_type="checkbox" :checkbox_inline='true'
+                            :hasLabel="false" :checkbox_text='$permission->name' :option='[]' :checked="isset($data->permissions)
+                                ? in_array($permission->name, $data->permissions)
+                                : old('permissions.' . $permission->name)"
+                            value='{{ $permission->name }}' />
+                    @endforeach
+
+
+                </div>
+            </div>
+            <div class="d-flex justify-content-end p-2">
+                <button class='btn btn-outline-primary'>Submit</button>
+            </div>
+        </form>
+    </div>
+</x-scrud::admin-layout>

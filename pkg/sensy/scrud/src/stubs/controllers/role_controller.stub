@@ -1,0 +1,156 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
+class RoleController extends Controller
+{
+    public $title;
+    public $default_guard = 'web';
+
+    public function __construct()
+    {
+        $this->title = ucfirst('Role');
+    }
+
+    public function index()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        #Retrieve all Roles
+        $listings = Role::where('name', 'NOT LIKE', '_Maintainer')->get()->except(Auth::user()->roles->pluck('id')->toArray());
+
+
+        return view('pages.backend.roles.roles-index', compact('listings', 'title', 'sub_title'));
+    }
+
+    public function create()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        $permissions = $this->filterPermissions();
+
+        return view('pages.backend.roles.roles-create', compact('title', 'sub_title', 'permissions'));
+    }
+
+    public function store(Request $request)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        #Validate request data
+        $data = $request->validate(['name' => 'required', 'permissions' => 'required']);
+        $data['guard_name'] = $this->default_guard;
+
+        try {
+
+            #Create a new Role instance
+            $role = Role::create(['name' => $data['name'], 'guard_name' => $data['guard_name']]);
+            $role->givePermissionTo($data['permissions']);
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('roles.index')->with('success', 'Role created successfully');
+    }
+
+    public function show($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Role with the given ID
+            $data = Role::findOrFail($id);
+            return view('pages.backend.roles.roles-show', compact('data', 'title', 'sub_title'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('roles.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function edit($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Role with the given ID
+            $data = Role::findOrFail($id);
+            $data['permissions'] = $data->permissions->pluck('name')->toArray();
+
+            $permissions = $this->filterPermissions();
+
+            return view('pages.backend.roles.roles-create', compact('data', 'title', 'sub_title', 'permissions'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('roles.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Role with the given ID
+            $item = Role::findOrFail($id);
+
+
+            #Validate request data
+            $data = $request->validate(['name' => 'required', 'permissions' => 'required']);
+            $data['guard_name'] = $this->default_guard;
+
+            #Update the Role instance
+            $item->update(['name' => $data['name'], 'guard_name' => $data['guard_name']]);
+
+            $item->syncPermissions($data['permissions']);
+
+            return redirect()->route('roles.index')->with('success', 'Role updated successfully');
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('roles.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Role with the given ID
+            $data = Role::findOrFail($id);
+
+            #Delete the Role instance
+            $data->delete();
+
+            return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('roles.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function filterPermissions()
+    {
+        if (Auth::user()->hasRole('_Maintainer')) {
+            $permissions = Permission::all();
+        } else {
+            $excludedTerms = ['menus', 'submenus', 'systemmodules'];
+            $permissions = Permission::where(function ($query) use ($excludedTerms) {
+                foreach ($excludedTerms as $term) {
+                    $query->where('name', 'NOT LIKE', "$term%");
+                }
+            })->get();
+        }
+
+        return $permissions;
+
+    }
+}

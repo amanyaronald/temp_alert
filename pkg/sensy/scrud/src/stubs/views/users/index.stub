@@ -1,0 +1,89 @@
+<x-scrud::admin-layout>
+    @slot('title', $title)
+    <x-scrud::backend.layouts.breadcrumbs :hasLink="true" link="{{ route('users.index') }}" :heading="$title"
+                                          :main="$title" :sub="$sub_title"/>
+
+    <div class="card mt-2">
+        <div class="card-body mt-5 border-bottom border-black">
+            <!-- Bordered Tabs -->
+            <div class="col-md-12 d-flex justify-content-between">
+                <div class="col-md-4">
+                    <form action="{{ route('users.index') }}" method="GET"
+                          class="d-flex justify-content-start align-content-center gap-2">
+                        <input name="query" type="text" class="form-control" placeholder="Search "
+                               value="{{ request('query') }}">
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-search"></i></button>
+                    </form>
+                </div>
+                @can(str_replace('-', '', 'users.create'))
+                    <div class="col-md-2 d-flex justify-content-end align-content-center">
+                        <a href="{{ route('users.create') }}">
+                            <button type="button" class="btn btn-primary"><i class="bi bi-plus"></i> Add</button>
+                        </a>
+                    </div>
+                @endcan
+            </div>
+        </div>
+        <div class="tab-content pt-2 mt-2" id="borderedTabContent">
+            <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th class="align-middle">Name</th>
+                        <th class="align-middle">Email</th>
+                        <th class="align-middle">Role</th>
+                        <th class="align-middle">Created on</th>
+                        <th class="align-middle">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if($listings->count() > 0)
+                        @foreach ($listings as $data)
+                            <tr>
+                                <td class="align-middle">{{ $data->name }}</td>
+                                <td class="align-middle">{{ $data->email }}</td>
+                                <td class="align-middle">{{ $data->roles->first()->name ?? '--' }}</td>
+                                <td class="align-middle">{{ $data->created_at->format('Y-m-d') }}</td>
+                                <td class="align-middle">
+                                    <div class="d-flex gap-2">
+                                        @can(str_replace('-', '', 'users.show'))
+                                            <a href="{{ route('users.show', [$data->id]) }}">
+                                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </a>
+                                        @endcan
+                                        @can(str_replace('-', '', 'users.update'))
+                                            <a href="{{ route('users.edit', [$data->id]) }}">
+                                                <button type="button" class="btn btn-sm btn-outline-warning">
+                                                    <i class="bi bi-pen"></i>
+                                                </button>
+                                            </a>
+                                        @endcan
+                                        @can(str_replace('-', '', 'users.destroy'))
+                                            <button type="button" class="btn btn-sm btn-danger delete-btn"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModel-{{ $data->id }}">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                            <x-scrud::dynamics.delete-script target="deleteModel-{{ $data->id }}"
+                                                                             route="{{ route('users.destroy', $data->id) }}"/>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="100" class="text-center">No data found</td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                    {{ $listings->links() }}
+                </div>
+            </div>
+        </div><!-- End Bordered Tabs -->
+    </div>
+</x-scrud::admin-layout>

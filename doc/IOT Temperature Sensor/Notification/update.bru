@@ -1,0 +1,26 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/notifications/:id
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "user_id": "",
+      "room_id": "",
+      "message": "",
+      "notification_type": "",
+      "sent_at": "",
+      "status": ""
+  }
+}

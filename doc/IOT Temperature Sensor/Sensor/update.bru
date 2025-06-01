@@ -1,0 +1,25 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/sensors/:id
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "room_id": "",
+      "sensor_name": "",
+      "sensor_type": "",
+      "installation_date": "",
+      "status": ""
+  }
+}

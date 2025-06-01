@@ -1,0 +1,15 @@
+meta {
+  name: index
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/users
+  body: json
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+}

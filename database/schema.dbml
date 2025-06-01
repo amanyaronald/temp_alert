@@ -1,0 +1,68 @@
+// Database Schema for Temperature Monitoring Application (Laravel Conventions)
+
+Table farms {
+    id int [pk, increment]
+    name varchar
+    location varchar
+    owner_user_id int [ref: > users.id] // References the farm owner
+}
+
+Table rooms {
+    id int [pk, increment]
+    farm_id int [ref: > farms.id] // References the farm this room belongs to
+    name varchar
+    description text
+}
+
+Table room_user { // Pivot table for many-to-many relationship between rooms and users
+    id int [pk, increment]
+    user_id int [ref: > users.id]
+    room_id int [ref: > rooms.id]
+    access_level varchar // e.g., read-only, admin
+}
+
+Table sensors {
+    id int [pk, increment]
+    room_id int [ref: > rooms.id] // References the room where the sensor is installed
+    sensor_name varchar
+    sensor_type varchar
+    installation_date date
+    status varchar // e.g., active, inactive
+}
+
+Table temperature_readings {
+    id int [pk, increment]
+    sensor_id int [ref: > sensors.id] // References the sensor that recorded the data
+    temperature_value decimal
+    recorded_at timestamp
+}
+
+Table thresholds {
+    id int [pk, increment]
+    room_id int [ref: > rooms.id] // References the room for which the threshold is set
+    min_temperature decimal
+    max_temperature decimal
+}
+
+Table notifications {
+    id int [pk, increment]
+    user_id int [ref: > users.id] // References the user who should receive the notification
+    room_id int [ref: > rooms.id] // References the room associated with the notification
+    message text
+    notification_type varchar // e.g., SMS, Email, Push Notification
+    sent_at timestamp
+    status varchar // e.g., sent, failed
+}
+
+Table alert_logs {
+    id int [pk, increment]
+    room_id int [ref: > rooms.id] // References the room where the alert occurred
+    sensor_id int [ref: > sensors.id] // References the sensor that triggered the alert
+    temperature_value decimal
+    alert_type varchar // e.g., high temperature, low temperature
+    triggered_at timestamp
+    resolved_at timestamp
+    status varchar // e.g., active, resolved
+}
+
+//Ref: "temperature_readings"."id" < "temperature_readings"."temperature_value"

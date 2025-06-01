@@ -1,0 +1,2350 @@
+{
+    "info": {
+        "_postman_id": "7cb0c9a6-0767-4780-bc57-8e1aeb912407",
+        "name": "IOT Temperature Sensor",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
+        "_exporter_id": "14307129"
+    },
+    "item": [
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"email\": \"\",\n    \"password\": \"\",\n    \"token\": \"\",\n    \"payload\": \"\",\n    \"last_activity\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/users\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"email\": \"\",\n    \"password\": \"\",\n    \"token\": \"\",\n    \"payload\": \"\",\n    \"last_activity\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/users\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/users\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Cache",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"key\": \"\",\n    \"value\": \"\",\n    \"expiration\": \"\",\n    \"owner\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/caches",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "caches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/caches",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "caches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/caches\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "caches",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"key\": \"\",\n    \"value\": \"\",\n    \"expiration\": \"\",\n    \"owner\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/caches\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "caches",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/caches\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "caches",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Job",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"queue\": \"\",\n    \"payload\": \"\",\n    \"attempts\": \"\",\n    \"available_at\": \"\",\n    \"name\": \"\",\n    \"total_jobs\": \"\",\n    \"pending_jobs\": \"\",\n    \"failed_jobs\": \"\",\n    \"failed_job_ids\": \"\",\n    \"uuid\": \"\",\n    \"connection\": \"\",\n    \"exception\": \"\",\n    \"failed_at\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/jobs",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "jobs"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/jobs",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "jobs"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/jobs\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "jobs",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"queue\": \"\",\n    \"payload\": \"\",\n    \"attempts\": \"\",\n    \"available_at\": \"\",\n    \"name\": \"\",\n    \"total_jobs\": \"\",\n    \"pending_jobs\": \"\",\n    \"failed_jobs\": \"\",\n    \"failed_job_ids\": \"\",\n    \"uuid\": \"\",\n    \"connection\": \"\",\n    \"exception\": \"\",\n    \"failed_at\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/jobs\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "jobs",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/jobs\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "jobs",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Farm",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"location\": \"\",\n    \"owner_user_id\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/farms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "farms"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/farms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "farms"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/farms\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "farms",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"location\": \"\",\n    \"owner_user_id\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/farms\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "farms",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/farms\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "farms",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Room",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"farm_id\": \"\",\n    \"name\": \"\",\n    \"description\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/rooms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "rooms"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/rooms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "rooms"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/rooms\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "rooms",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"farm_id\": \"\",\n    \"name\": \"\",\n    \"description\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/rooms\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "rooms",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/rooms\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "rooms",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "RoomUser",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": \"\",\n    \"room_id\": \"\",\n    \"access_level\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/room-users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "room-users"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/room-users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "room-users"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/room-users\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "room-users",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": \"\",\n    \"room_id\": \"\",\n    \"access_level\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/room-users\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "room-users",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/room-users\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "room-users",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Sensor",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"room_id\": \"\",\n    \"sensor_name\": \"\",\n    \"sensor_type\": \"\",\n    \"installation_date\": \"\",\n    \"status\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/sensors",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sensors"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/sensors",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sensors"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/sensors\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sensors",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"room_id\": \"\",\n    \"sensor_name\": \"\",\n    \"sensor_type\": \"\",\n    \"installation_date\": \"\",\n    \"status\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/sensors\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sensors",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/sensors\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sensors",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "TemperatureReading",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"sensor_id\": \"\",\n    \"temperature_value\": \"\",\n    \"recorded_at\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/temperature-readings",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "temperature-readings"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/temperature-readings",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "temperature-readings"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/temperature-readings\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "temperature-readings",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"sensor_id\": \"\",\n    \"temperature_value\": \"\",\n    \"recorded_at\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/temperature-readings\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "temperature-readings",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/temperature-readings\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "temperature-readings",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Threshold",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"room_id\": \"\",\n    \"min_temperature\": \"\",\n    \"max_temperature\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/thresholds",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "thresholds"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/thresholds",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "thresholds"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/thresholds\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "thresholds",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"room_id\": \"\",\n    \"min_temperature\": \"\",\n    \"max_temperature\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/thresholds\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "thresholds",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/thresholds\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "thresholds",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Notification",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": \"\",\n    \"room_id\": \"\",\n    \"message\": \"\",\n    \"notification_type\": \"\",\n    \"sent_at\": \"\",\n    \"status\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/notifications",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "notifications"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/notifications",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "notifications"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/notifications\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "notifications",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": \"\",\n    \"room_id\": \"\",\n    \"message\": \"\",\n    \"notification_type\": \"\",\n    \"sent_at\": \"\",\n    \"status\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/notifications\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "notifications",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/notifications\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "notifications",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "AlertLog",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"room_id\": \"\",\n    \"sensor_id\": \"\",\n    \"temperature_value\": \"\",\n    \"alert_type\": \"\",\n    \"triggered_at\": \"\",\n    \"resolved_at\": \"\",\n    \"status\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/alert-logs",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "alert-logs"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/alert-logs",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "alert-logs"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/alert-logs\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "alert-logs",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"room_id\": \"\",\n    \"sensor_id\": \"\",\n    \"temperature_value\": \"\",\n    \"alert_type\": \"\",\n    \"triggered_at\": \"\",\n    \"resolved_at\": \"\",\n    \"status\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/alert-logs\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "alert-logs",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/alert-logs\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "alert-logs",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "SystemModuleCategory",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"is_active\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-module-categories",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-module-categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-module-categories",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-module-categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-module-categories\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-module-categories",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"is_active\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-module-categories\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-module-categories",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-module-categories\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-module-categories",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "SystemModule",
+            "item": [
+                {
+                    "name": "create",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"system_module_category_id\": \"\",\n    \"name\": \"\",\n    \"is_active\": \"\",\n    \"has_add\": \"\",\n    \"has_show\": \"\",\n    \"has_update\": \"\",\n    \"has_destroy\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-modules",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-modules"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-modules",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-modules"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-modules\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-modules",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"system_module_category_id\": \"\",\n    \"name\": \"\",\n    \"is_active\": \"\",\n    \"has_add\": \"\",\n    \"has_show\": \"\",\n    \"has_update\": \"\",\n    \"has_destroy\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-modules\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-modules",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": null,
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}\/system-modules\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "system-modules",
+                                ":id"
+                            ],
+                            "variable": {
+                                "key": "id",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}

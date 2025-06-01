@@ -1,0 +1,36 @@
+{
+    "name": "sensy/scrud",
+    "description": "CRUD Starterkit for Laravel by sensy",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "src/app/Http/Helpers/helper.php"
+        ],
+        "psr-4": {
+            "Sensy\\Scrud\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Onen Sensy -  Sensy",
+            "email": "onen.sensy@piclesale.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^8.0|^9.0|^10.0|^11.0",
+        "livewire/livewire": "^3.0",
+        "spatie/laravel-permission": "^5.0|^6.0",
+        "laravel/jetstream": "^2.0|^3.0|^4.0",
+
+        "orangehill/iseed": "^3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sensy\\Scrud\\Providers\\ViewServiceProvider"
+            ]
+        }
+    }
+}

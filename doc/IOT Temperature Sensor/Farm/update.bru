@@ -1,0 +1,27 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/farms/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "name": "Updated",
+      "location": "NEW ONE",
+      "owner_user_id": "1"
+  }
+}

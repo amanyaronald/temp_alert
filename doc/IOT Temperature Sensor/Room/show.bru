@@ -1,0 +1,19 @@
+meta {
+  name: show
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/rooms/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+headers {
+  Accept: application/json
+}

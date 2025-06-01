@@ -1,0 +1,27 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/alert-logs/:id
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "room_id": "",
+      "sensor_id": "",
+      "temperature_value": "",
+      "alert_type": "",
+      "triggered_at": "",
+      "resolved_at": "",
+      "status": ""
+  }
+}

@@ -1,0 +1,54 @@
+<x-scrud::admin-layout>
+    @slot('title', $title)
+    <x-scrud::backend.layouts.breadcrumbs :hasLink="true" link="{{ route('users.index') }}" :heading="$title"
+        :main="$title" :sub="$sub_title" />
+
+    <div class="card mt-2">
+        <div class="card-body mt-5 border-bottom border-black">
+            <div class="row">
+
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Name</label>
+                        <p>
+                            <span class=''>{{ $data->name }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Email</label>
+                        <p>
+                            <span class=''>{{ $data->email }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Email verified at</label>
+                        <p>
+                            <span class=''>{{ $data->email_verified_at }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Role</label>
+                        <p>
+                            <span class=''>{{ $data->roles->first()->name }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Profile photo path</label>
+                        <p>
+                            <img src="{{ $data->profile_photo_path }}" alt="profile">
+                            {{-- <span class=''>{{ $data->profile_photo_path }}</span> --}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-scrud::admin-layout>

@@ -1,0 +1,27 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/rooms/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "farm_id": "2",
+      "name": "A NEW NAME",
+      "description": "NEW TEST NAME"
+  }
+}

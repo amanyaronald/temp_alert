@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "IOT Temperature Sensor",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,12 @@
+<x-scrud::admin-layout>
+    @slot('title', $title)
+    <x-scrud::backend.layouts.breadcrumbs  :hasLink="true" link="{{ route('{class}.index') }}" :heading="$title" :main="$title" :sub="$sub_title" />
+
+    <div class="card mt-2">
+        <div class="card-body mt-5 border-bottom border-black">
+            <div class="row">
+                {{showBind}}
+            </div>
+        </div>
+    </div>
+</x-scrud::admin-layout>

@@ -1,0 +1,23 @@
+meta {
+  name: create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/thresholds
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "room_id": "",
+      "min_temperature": "",
+      "max_temperature": ""
+  }
+}

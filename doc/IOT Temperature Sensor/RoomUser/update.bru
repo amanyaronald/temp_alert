@@ -1,0 +1,27 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/room-users/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "user_id": "3",
+      "room_id": "1",
+      "access_level": "admin"
+  }
+}

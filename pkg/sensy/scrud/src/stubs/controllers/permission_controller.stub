@@ -1,0 +1,124 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Permission;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class PermissionController extends Controller
+{
+    public $title;
+
+    public function __construct()
+    {
+        $this->title = ucfirst('Permission');
+    }
+
+    public function index()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        #Retrieve all Permissions
+        // $listings = Permission::all();
+        return view('pages.backend.permissions.permissions-index', compact('listings', 'title', 'sub_title'));
+    }
+
+    public function create()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        return view('pages.backend.permissions.permissions-create', compact('title', 'sub_title'));
+    }
+
+    public function store(Request $request)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        #Validate request data
+        $data = $request->validate([]);
+
+        ## Incase of image Upload
+        ## $data['image_path'] = $this->uploadFile($request, 'image_path', ['required']);
+
+
+        #Create a new Permission instance
+        Permission::create($data);
+
+        return redirect()->route('permissions.index')->with('success', 'Permission created successfully');
+    }
+
+    public function show($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Permission with the given ID
+            $data = Permission::findOrFail($id);
+            return view('pages.backend.permissions.permissions-show', compact('data', 'title', 'sub_title'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('permissions.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function edit($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Permission with the given ID
+            $data = Permission::findOrFail($id);
+            return view('pages.backend.permissions.permissions-create', compact('data', 'title', 'sub_title'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('permissions.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Permission with the given ID
+            $item = Permission::findOrFail($id);
+
+            #Validate request data
+            $data = $request->validate([]);
+
+            ## Incase of image Upload
+            ## $data['image_path'] = $this->uploadFile($request, 'image_path', ['required']);
+
+            #Update the Permission instance
+            $item->update($data);
+
+            return redirect()->route('permissions.index')->with('success', 'Permission updated successfully');
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('permissions.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the Permission with the given ID
+            $data = Permission::findOrFail($id);
+
+            #Delete the Permission instance
+            $data->delete();
+
+            return redirect()->route('permissions.index')->with('success', 'Permission deleted successfully');
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('permissions.index')->with('error', 'Resource not found');
+        }
+    }
+}

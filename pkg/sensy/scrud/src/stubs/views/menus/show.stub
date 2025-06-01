@@ -1,0 +1,53 @@
+<x-scrud::admin-layout>
+    @slot('title', $title)
+    <x-scrud::backend.layouts.breadcrumbs :hasLink="true" link="{{ route('menus.index') }}" :heading="$title"
+        :main="$title" :sub="$sub_title" />
+
+    <div class="card mt-2">
+        <div class="card-body mt-5 border-bottom border-black">
+            <div class="row">
+
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>System module</label>
+                        <p>
+                            <span class=''>{{ $data->systemModule->name }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Name</label>
+                        <p>
+                            <span class=''>{{ $data->name }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Icon</label>
+                        <p>
+                            <span class=''>{{ $data->icon }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Route</label>
+                        <p>
+                            <span class=''>{{ $data->route }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class='col-md-3'>
+                    <div class='form-group'>
+                        <label class='fw-bold'>Description</label>
+                        <p>
+                            <span class=''>{{ $data->description }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-scrud::admin-layout>

@@ -1,0 +1,81 @@
+<x-scrud::admin-layout>
+    @slot('title', $title)
+    <x-scrud::backend.layouts.breadcrumbs :hasLink="true" link="{{ route('roles.index') }}" :heading="$title"
+        :main="$title" :sub="$sub_title" />
+
+    <div class="card mt-2">
+        <div class="card-body mt-5 border-bottom border-black">
+            <!-- Bordered Tabs -->
+            <div class="col-md-12 d-flex justify-content-end ">
+                {{-- <div class="col-md-10">
+
+                     <div class="d-flex justify-content-start align-content-center gap-2 ">
+                        <div class="d-flex justify-content-center align-content-center gap-2">
+                            <input wire:keydown.enter="search" wire:model='value' type="text" class="form-control"
+                                placeholder="Search ">
+                            <button wire:click="search" type="button" class="btn btn-sm btn-primary"><i
+                                    class="bi bi-search "></i></button>
+                        </div>
+                    </div>
+
+                </div> --}}
+                <div class="col-md-2 d-flex justify-content-end align-content-center">
+                    {{-- @livewire('actions.bulk-actions', ['urlClass' => 'constituencies', 'model' => 'Country']) --}}
+                    <a href="{{ route('roles.create') }}">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add"><i
+                                class="bi bi-plus "></i>
+                            Add</button>
+                    </a>
+                </div><!-- End Basic Modal-->
+
+            </div>
+        </div>
+        <div class="tab-content pt-2 mt-2" id="borderedTabContent">
+            <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
+                <table class="table table-st datatable">
+                    <thead>
+                        <tr>
+                            <th class="align-middle">Name</th>
+                            <th class="align-middle">Created on</th>
+                            <th class="align-middle">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($listings as $data)
+                            <tr>
+
+                                <td class="align-middle">{{ $data->name }} </td>
+                                <td class="align-middle">{{ $data->created_at }} </td>
+                                <td class="align-middle">
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('roles.show', [$data->id]) }}">
+                                            <button type="button" class="btn btn-sm btn-outline-primary"
+                                                data-bs-toggle="modal" data-bs-target="#add"><i class="bi bi-eye "></i>
+                                            </button>
+                                        </a>
+                                        <a href="{{ route('roles.edit', [$data->id]) }}">
+                                            <button type="button" class="btn btn-sm btn-outline-warning"
+                                                data-bs-toggle="modal" data-bs-target="#add"><i class="bi bi-pen "></i>
+                                            </button>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-danger delete-btn"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModel-{{ $data->id }}">
+                                            <i class="bi bi-x"></i>
+                                        </button>
+                                    </div>
+                                    <x-scrud::dynamics.delete-script target="deleteModel-{{ $data->id }}"
+                                        route="{{ route('roles.destroy', $data->id) }}" />
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                    {{ $listings->links() }}
+                </div>
+            </div>
+        </div><!-- End Bordered Tabs -->
+    </div>
+
+
+</x-scrud::admin-layout>

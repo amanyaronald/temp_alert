@@ -1,0 +1,19 @@
+meta {
+  name: delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{base_url}}/farms/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+headers {
+  Accept: application/json
+}

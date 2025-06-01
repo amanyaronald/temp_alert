@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Console\Commands\UpdatePatch;
+
+use App\Http\Constants\RoleConstants;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Sensy\UpdatePatches\Traits\UpdatePatchTrait;
+
+class {{fileName}} extends Command
+{
+    use UpdatePatchTrait;
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    public $signature = 'sensy-deploy:{{name}}';
+    public $patch_name = '{{name}}';
+
+    #DONOT CHANGE THIS
+    public string $author = '{{author}}';
+    public string $date = '{{date}}';
+    #DONOT CHANGE THIS
+
+     #ADD THE TASKS AND FUNCTIONS HERE
+        public $taskList = [
+            // 'funcA' => 'Task A',
+        ];
+     #ADD THE TASKS AND FUNCTIONS HERE
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Update the application to {{name}}';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        return $this->initPatch();
+    }
+
+    #ADD THE TASKS AND FUNCTIONS HERE
+    // public function funcA(){
+    //     $this->info('Task A');
+    //}
+    #ADD THE TASKS AND FUNCTIONS HERE
+}

@@ -1,0 +1,177 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Sensy\Scrud\Traits\FileUploadTrait;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+
+class UserController extends Controller
+{
+    use FileUploadTrait;
+
+    public $paginate=10;
+    public $title;
+
+    public function __construct()
+    {
+        $this->title = ucfirst('User');
+    }
+
+    public function index()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        #Retrieve all Users
+        $listings = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', '_Maintainer');
+        })->paginate($this->paginate);
+
+        return view('pages.backend.users.users-index', compact('listings', 'title', 'sub_title'));
+    }
+
+    public function create()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        $roles = Role::where('name', 'NOT LIKE', '_Maintainer')->get();
+
+        return view('pages.backend.users.users-create', compact('title', 'sub_title', 'roles'));
+    }
+    public function profile()
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the User with the given ID
+            $data = User::findOrFail(Auth::user()->id);
+            $roles = Role::where('name', 'NOT LIKE', '_Maintainer')->get();
+
+            return view('scrud::pages.backend.auth.user-profile', compact('data', 'title', 'sub_title', 'roles'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('users.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        # Validate request data
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|same:password',
+            'role' => 'required',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        ## Encrypt the password
+        $data['password'] = Hash::make($data['password']);
+
+        ## Incase of image Upload
+        // $data['profile_photo_path'] = $this->uploadFile($request, 'profile_photo_path', ['required']);
+
+        # Create a new User instance
+        $user = User::create($data);
+        $user->assignRole(Role::find($data['role'])->name);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully');
+    }
+
+    public function show($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the User with the given ID
+            $data = User::findOrFail($id);
+            return view('pages.backend.users.users-show', compact('data', 'title', 'sub_title'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('users.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function edit($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the User with the given ID
+            $data = User::findOrFail($id);
+            $roles = Role::where('name', 'NOT LIKE', '_Maintainer')->get();
+
+            return view('pages.backend.users.users-create', compact('data', 'title', 'sub_title', 'roles'));
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('users.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the User with the given ID
+            $item = User::findOrFail($id);
+
+            #Validate request data
+            $data = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'nullable|min:8',
+                'password_confirmation' => 'nullable|same:password',
+                'role' => 'required',
+                'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            if ($request->has('password')) {
+                $data['password'] = Hash::make($data['password']);
+            }
+
+            ## Incase of image Upload
+            $data['image_path'] = $this->uploadFile($request, 'image_path', ['required']);
+
+            #Update the User instance
+            $item->update($data);
+
+            if ($item->roles->first()->id != $data['role'])
+                $item->syncRole(Role::find($data['role'])->name);
+
+            return redirect()->route('users.index')->with('success', 'User updated successfully');
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('users.index')->with('error', 'Resource not found');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $title = $this->title;
+        $sub_title = __FUNCTION__;
+
+        try {
+            #Retrieve the User with the given ID
+            $data = User::findOrFail($id);
+
+            #Delete the User instance
+            $data->delete();
+
+            return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('users.index')->with('error', 'Resource not found');
+        }
+    }
+}
