@@ -9,16 +9,6 @@ class Room extends Model
 {
     use HasFactory;
 
-    
-    /*protected $fillable = [
-        'farm_id',
-		'name',
-		'description'
-    ]; */
-
-    protected $casts = [
-        
-    ];
 
     public function farm()
     {

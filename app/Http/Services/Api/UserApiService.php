@@ -40,7 +40,9 @@ class UserApiService implements ServiceInterface
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('name', 'LIKE', '%' . $query . '%');
                 });
-            });
+            })->with([
+                'rooms.room.farm'
+            ]);
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -68,7 +70,8 @@ class UserApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+
+            $data = $this->_m->with('rooms.room.farm')->find($id);
             if (!$data) {
                 return [
                     'status' => 0,

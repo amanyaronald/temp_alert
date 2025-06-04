@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 use App\Models\Room;
  use App\Models\Sensor;
  use App\Models\User;
- 
+
 
 class AlertLogApiController extends Controller
 {
@@ -44,10 +44,10 @@ class AlertLogApiController extends Controller
             $data = $request->validate([
 'room_id' => 'required',
 'sensor_id' => 'required',
-'temperature_value' => 'required|decimal',
+'temperature_value' => 'required|numeric',
 'alert_type' => 'required',
 'triggered_at' => 'required',
-'resolved_at' => 'required',
+'resolved_at' => 'nullable',
 ]);
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;
@@ -97,10 +97,10 @@ class AlertLogApiController extends Controller
             $data = $request->validate([
 'room_id' => 'required',
 'sensor_id' => 'required',
-'temperature_value' => 'required|decimal',
+'temperature_value' => 'required|numeric',
 'alert_type' => 'required',
 'triggered_at' => 'required',
-'resolved_at' => 'required',
+'resolved_at' => 'nullable',
 ]);
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;

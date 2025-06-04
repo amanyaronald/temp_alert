@@ -10,13 +10,13 @@ return new class extends Migration {
     {
         Schema::create('alert_logs', function (Blueprint $table) {
             $table->id();
-                        $table->foreignId('room_id')->constrained('rooms');
+            $table->foreignId('room_id')->constrained('rooms');
             $table->foreignId('sensor_id')->constrained('sensors');
             $table->decimal('temperature_value');
             $table->string('alert_type');
             $table->timestamp('triggered_at');
-            $table->timestamp('resolved_at');
-            $table->string('status');
+            $table->timestamp('resolved_at')->nullable();
+            $table->string('status')->default('triggered');
 
             $table->foreignId("created_by")->constrained("users");
             $table->foreignId("deleted_by")->nullable()->constrained("users");

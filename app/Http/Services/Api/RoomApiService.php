@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Farm;
  use App\Models\User;
- 
+
 
 class RoomApiService implements ServiceInterface
 {
@@ -36,7 +36,7 @@ class RoomApiService implements ServiceInterface
                     $subQuery->where('name', 'LIKE', '%' . $query . '%')
 						->orWhere('description', 'LIKE', '%' . $query . '%');
                 });
-            });
+            })->with('farm.user');
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -64,7 +64,7 @@ class RoomApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with('farm.user')->find($id);
             if (!$data) {
                 return [
                     'status' => 0,
@@ -174,7 +174,7 @@ $users = User::LP()->get();
         try {
             $data = $request->data;
 
-            
+
  $this->_m->farm_id = $data['farm_id'];
  $this->_m->name = $data['name'];
  $this->_m->description = $data['description'];
@@ -221,7 +221,7 @@ $users = User::LP()->get();
 
             ##DATA FILLING
 
-            
+
  $this->_m->farm_id = $data['farm_id'];
  $this->_m->name = $data['name'];
  $this->_m->description = $data['description'];

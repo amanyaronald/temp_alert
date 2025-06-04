@@ -10,7 +10,7 @@ return new class extends Migration {
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-                        $table->foreignId('farm_id')->constrained('farms');
+            $table->foreignId('farm_id')->constrained('farms');
             $table->string('name');
             $table->text('description');
 

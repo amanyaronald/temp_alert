@@ -4,6 +4,8 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use Sensy\Scrud\app\Http\Helpers\Model;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +23,31 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
-require __DIR__.'/auth.php';
+Route::get('sms/webhook', function () {
+
+    $req = request();
+    $req->merge([
+        "SmsStatus" => 'success',
+        "SmsSid" => Str::random(10),
+        "SmsMessageSid" => Str::random(10),
+        "MessageSid" => Str::random(10),
+        "From" => '256783940334',
+        "Body" => 'Sent from your Twilio Trial account -sensor=1;temp=25.6;type=alert;status=normal',
+    ]);
+
+
+    return Model::call(request(), 'Sms', 'webhook');
+});
+
+Route::get('sendSms', function () {
+
+    $req = request();
+    $req->merge([
+        "to" => env('SENSOR_PHONE_NO'),
+        "message" => 'sensor=1;temp=25.6;type=alert;status=normal',
+    ]);
+
+    return Model::call(request(), 'Sms', 'sendMessage');
+});
+
+require __DIR__ . '/auth.php';

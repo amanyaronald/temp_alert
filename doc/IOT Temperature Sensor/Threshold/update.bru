@@ -7,7 +7,7 @@ meta {
 put {
   url: {{base_url}}/thresholds/:id
   body: json
-  auth: none
+  auth: inherit
 }
 
 headers {
@@ -16,8 +16,8 @@ headers {
 
 body:json {
   {
-      "room_id": "",
-      "min_temperature": "",
-      "max_temperature": ""
+      "room_id": "1",
+      "min_temperature": "10",
+      "max_temperature": "40"
   }
 }

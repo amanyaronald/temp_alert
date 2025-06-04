@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'twilio' =>[
+        'active' => env('TWILIO_ACTIVE', true), // Enable or disable Twilio service
+        'account_sid' => env('TWILIO_ACCOUNT_SID'),
+        'auth_token' => env('TWILIO_AUTH_TOKEN'),
+        'from' => env('TWILIO_FROM', '+1234567890'), // Default Twilio number
+    ]
+
 ];

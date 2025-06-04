@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{base_url}}/room-users
+  url: {{base_url}}/room-users?options[user_id]=1
   body: json
   auth: inherit
+}
+
+params:query {
+  options[user_id]: 1
 }
 
 headers {

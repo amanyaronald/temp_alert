@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Api;
 
+use App\Models\RoomUser;
+use Sensy\Scrud\app\Http\Helpers\Model;
 use Sensy\Scrud\app\Http\Interfaces\ServiceInterface;
 use Illuminate\Http\Request;
 use Exception;
@@ -35,7 +37,9 @@ class ThresholdApiService implements ServiceInterface
                 $q->where(function ($subQuery) use ($query) {
 
                 });
-            });
+            })->with([
+                'room.farm.user'
+            ]);
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -63,7 +67,9 @@ class ThresholdApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with([
+                'room.farm.user'
+            ])->find($id);
             if (!$data) {
                 return [
                     'status' => 0,
@@ -181,6 +187,12 @@ class ThresholdApiService implements ServiceInterface
             $this->_m->created_by = auth()->id();
             $this->_m->save();
 
+            $sender = $this->updateSensor($data['min_temperature'], $data['max_temperature']);
+            if ($sender['status'] == 0) return $sender;
+
+            $notification = $this->sendNotification($data['room_id'],"Room Temperature Set Min:{$data['min_temperature']}, Max:{$data['max_temperature']}");
+            if ($notification['status'] == 0) return $notification;
+
             DB::commit();
             return [
                 'status' => 1,
@@ -228,6 +240,10 @@ class ThresholdApiService implements ServiceInterface
             $this->_m->updated_by = auth()->id();
 
             $this->_m->save();
+
+            $sender = $this->updateSensor($data['min_temperature'], $data['max_temperature']);
+            if ($sender['status'] == 0) return $sender;
+
             DB::commit();
             return [
                 'status' => 1,
@@ -309,6 +325,43 @@ class ThresholdApiService implements ServiceInterface
                 'message' => 'SERVICE ERROR: ' . $e->getMessage(),
                 'data' => null
             ];
+        }
+    }
+
+    public function updateSensor($min, $max)
+    {
+        $phone = env('SENSOR_PHONE_NO');
+        if (!$phone) return ['status' => 0, 'message' => 'SENSOR_PHONE_NO config missing in env'];
+        ## send message sms to sensor to update it
+        $request = request();
+        $request->merge([
+            "to" => $phone,
+            "message" => "SET_MAX={$max};SET_MIN={$min}",
+        ]);
+
+        return Model::call($request, 'Sms', 'sendMessage');
+    }
+
+    public function sendNotification($room,$message)
+    {
+
+        #get all users of a room
+        $room_users = RoomUser::where('room_id', $room)->get();
+
+        if ($room_users) $room_users->pluck('user_id')->toArray();
+        foreach ($room_users as $ru) {
+            $request = new Request();
+            $request->merge([
+                "data" => [
+                    'user_id'=>$ru->id,
+                    'room_id'=>$room,
+                    'message'  =>$message,
+                    'notification_type' =>'info',
+                ]
+            ]);
+
+            $req = Model::call($request, 'Notification', 'store', isApi: true);
+            return json_decode($req->getContent(),true);
         }
     }
 }

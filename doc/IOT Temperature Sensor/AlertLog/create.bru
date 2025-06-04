@@ -7,7 +7,7 @@ meta {
 post {
   url: {{base_url}}/alert-logs
   body: json
-  auth: none
+  auth: inherit
 }
 
 headers {
@@ -16,11 +16,11 @@ headers {
 
 body:json {
   {
-      "room_id": "",
-      "sensor_id": "",
-      "temperature_value": "",
-      "alert_type": "",
-      "triggered_at": "",
+      "room_id": "1",
+      "sensor_id": "1",
+      "temperature_value": "60",
+      "alert_type": "high",
+      "triggered_at": "2025-06-01T20:03:59.000000Z",
       "resolved_at": "",
       "status": ""
   }

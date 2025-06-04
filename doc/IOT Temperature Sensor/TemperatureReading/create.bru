@@ -7,7 +7,7 @@ meta {
 post {
   url: {{base_url}}/temperature-readings
   body: json
-  auth: none
+  auth: inherit
 }
 
 headers {
@@ -16,8 +16,8 @@ headers {
 
 body:json {
   {
-      "sensor_id": "",
-      "temperature_value": "",
-      "recorded_at": ""
+      "sensor_id": "1",
+      "temperature_value": "2",
+      "recorded_at": "2025-06-01T03:49:18.000000Z"
   }
 }

@@ -9,7 +9,7 @@ class Farm extends Model
 {
     use HasFactory;
 
-    
+
     /*protected $fillable = [
         'name',
 		'location',
@@ -17,7 +17,7 @@ class Farm extends Model
     ]; */
 
     protected $casts = [
-        
+
     ];
 
     public function user()
@@ -25,4 +25,8 @@ class Farm extends Model
         return $this->belongsTo(User::class, 'owner_user_id');
     }
 
+    public function rooms()
+    {
+        return $this->HasMany(RoomUser::class);
+    }
 }

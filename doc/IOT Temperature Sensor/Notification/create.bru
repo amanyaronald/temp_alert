@@ -7,7 +7,7 @@ meta {
 post {
   url: {{base_url}}/notifications
   body: json
-  auth: none
+  auth: inherit
 }
 
 headers {
@@ -16,11 +16,11 @@ headers {
 
 body:json {
   {
-      "user_id": "",
-      "room_id": "",
-      "message": "",
-      "notification_type": "",
-      "sent_at": "",
-      "status": ""
+      "user_id": "1",
+      "room_id": "1",
+      "message": "Room is low ",
+      "notification_type": "alert",
+      "sent_at": "2025-06-01T19:49:18.000000Z",
+      "status": "sent"
   }
 }

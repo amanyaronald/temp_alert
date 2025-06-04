@@ -8,8 +8,8 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Sensor;
- use App\Models\User;
- 
+use App\Models\User;
+
 
 class TemperatureReadingApiService implements ServiceInterface
 {
@@ -33,9 +33,11 @@ class TemperatureReadingApiService implements ServiceInterface
 
             $builder = $this->_m->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
-                    
+
                 });
-            });
+            })->with([
+                'sensor.room.farm.user'
+            ]);
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -63,7 +65,10 @@ class TemperatureReadingApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with([
+                'sensor.room.farm.user'
+            ])->find($id);
+
             if (!$data) {
                 return [
                     'status' => 0,
@@ -101,13 +106,13 @@ class TemperatureReadingApiService implements ServiceInterface
             $data = $request->data;
 
             $sensors = Sensor::all();
-$users = User::LP()->get();
+            $users = User::LP()->get();
 
 
             return [
                 'status' => 1,
                 'message' => 'Data retrieved for Creation',
-                'data' => $data + compact('sensors','users')
+                'data' => $data + compact('sensors', 'users')
             ];
         } catch (\Exception $e) {
             log_exception($e);
@@ -140,8 +145,8 @@ $users = User::LP()->get();
                 ];
             }
 
-             $sensors = Sensor::all();
-$users = User::LP()->get();
+            $sensors = Sensor::all();
+            $users = User::LP()->get();
 
 
             $this->_m->updated_by = auth()->id();
@@ -150,8 +155,8 @@ $users = User::LP()->get();
                 'status' => 1,
                 'message' => 'Data retrieved for editing',
                 'data' => array_merge(
-                    ['data'=>$data],
-                    compact('sensors','users')
+                    ['data' => $data],
+                    compact('sensors', 'users')
                 )
             ];
         } catch (\Exception $e) {
@@ -173,12 +178,11 @@ $users = User::LP()->get();
         try {
             $data = $request->data;
 
-            
- $this->_m->sensor_id = $data['sensor_id'];
- $this->_m->temperature_value = $data['temperature_value'];
- $this->_m->recorded_at = $data['recorded_at'];
+            $this->_m->sensor_id = $data['sensor_id'];
+            $this->_m->temperature_value = $data['temperature_value'];
+            $this->_m->recorded_at = now();
 
-            $this->_m->created_by = auth()->id();
+            $this->_m->created_by = 1;
             $this->_m->save();
 
             DB::commit();
@@ -220,10 +224,10 @@ $users = User::LP()->get();
 
             ##DATA FILLING
 
-            
- $this->_m->sensor_id = $data['sensor_id'];
- $this->_m->temperature_value = $data['temperature_value'];
- $this->_m->recorded_at = $data['recorded_at'];
+
+            $this->_m->sensor_id = $data['sensor_id'];
+            $this->_m->temperature_value = $data['temperature_value'];
+            $this->_m->recorded_at = $data['recorded_at'];
 
             $this->_m->updated_by = auth()->id();
 

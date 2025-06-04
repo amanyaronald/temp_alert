@@ -15,6 +15,7 @@ use Sensy\Scrud\app\Http\Helpers\AuthHandler;
 Route::group(['prefix' => 'api', 'middleware' => 'resolve.service'], function () {
     Route::post('/users/login', [UserApiController::class, 'login']);
     Route::post('/users/update-pwd', [UserApiController::class, 'updatePwd'])->middleware('auth:sanctum');
+
     Route::get('/{service}', [ApiHandler::class, 'index'])->middleware('auth:sanctum');
     Route::get('/{service}/create', [ApiHandler::class, 'create'])->middleware('auth:sanctum');
     Route::get('/{service}/{id}', [ApiHandler::class, 'show'])->middleware('auth:sanctum');

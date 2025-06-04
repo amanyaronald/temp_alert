@@ -1,0 +1,11 @@
+meta {
+  name: webhook
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url_plain}}/sms/webhook
+  body: none
+  auth: inherit
+}

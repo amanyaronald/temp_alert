@@ -9,7 +9,9 @@ class Model
         $caller = service_caller($function, $service, $isApi);
         if (!$req->data) $req->data = []; ## set default for data as empty
 
-        $req->options = $options;
+        if ($req->input('options')) $req->options = $req->input('options');
+        else $req->options = $options;
+
         $service = new ServiceHandler($caller[0]);
 
         $req->asBuilder = $asBuilder;

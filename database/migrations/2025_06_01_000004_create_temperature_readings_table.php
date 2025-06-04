@@ -13,6 +13,7 @@ return new class extends Migration {
                         $table->foreignId('sensor_id')->constrained('sensors');
             $table->decimal('temperature_value');
             $table->timestamp('recorded_at');
+            $table->timestamp('status')->nullable();
 
             $table->foreignId("created_by")->constrained("users");
             $table->foreignId("deleted_by")->nullable()->constrained("users");

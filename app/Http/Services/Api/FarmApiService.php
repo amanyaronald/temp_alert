@@ -34,7 +34,7 @@ class FarmApiService implements ServiceInterface
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('name', 'LIKE', '%' . $query . '%');
                 });
-            });
+            })->with('user');
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -62,7 +62,7 @@ class FarmApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with('user')->find($id);
             if (!$data) {
                 return [
                     'status' => 0,

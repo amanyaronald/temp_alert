@@ -8,8 +8,9 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
- use App\Models\Room;
- 
+use App\Models\Room;
+use function Pest\Laravel\options;
+
 
 class NotificationApiService implements ServiceInterface
 {
@@ -33,9 +34,8 @@ class NotificationApiService implements ServiceInterface
 
             $builder = $this->_m->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
-                    
                 });
-            });
+            })->with('room.farm.user');
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -63,7 +63,7 @@ class NotificationApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with('room.farm.user')->find($id);
             if (!$data) {
                 return [
                     'status' => 0,
@@ -101,13 +101,13 @@ class NotificationApiService implements ServiceInterface
             $data = $request->data;
 
             $users = User::LP()->get();
-$rooms = Room::all();
+            $rooms = Room::all();
 
 
             return [
                 'status' => 1,
                 'message' => 'Data retrieved for Creation',
-                'data' => $data + compact('users','rooms')
+                'data' => $data + compact('users', 'rooms')
             ];
         } catch (\Exception $e) {
             log_exception($e);
@@ -140,8 +140,8 @@ $rooms = Room::all();
                 ];
             }
 
-             $users = User::LP()->get();
-$rooms = Room::all();
+            $users = User::LP()->get();
+            $rooms = Room::all();
 
 
             $this->_m->updated_by = auth()->id();
@@ -150,8 +150,8 @@ $rooms = Room::all();
                 'status' => 1,
                 'message' => 'Data retrieved for editing',
                 'data' => array_merge(
-                    ['data'=>$data],
-                    compact('users','rooms')
+                    ['data' => $data],
+                    compact('users', 'rooms')
                 )
             ];
         } catch (\Exception $e) {
@@ -173,14 +173,14 @@ $rooms = Room::all();
         try {
             $data = $request->data;
 
-            
- $this->_m->user_id = $data['user_id'];
- $this->_m->room_id = $data['room_id'];
- $this->_m->message = $data['message'];
- $this->_m->notification_type = $data['notification_type'];
- $this->_m->sent_at = $data['sent_at'];
+            $this->_m->user_id = $data['user_id'];
+            $this->_m->room_id = $data['room_id'];
+            $this->_m->message = $data['message'];
+            $this->_m->notification_type = $data['notification_type'];
+            $this->_m->sent_at = now();
+            $this->_m->status = 'sent';
 
-            $this->_m->created_by = auth()->id();
+            $this->_m->created_by = 1;
             $this->_m->save();
 
             DB::commit();
@@ -222,12 +222,13 @@ $rooms = Room::all();
 
             ##DATA FILLING
 
-            
- $this->_m->user_id = $data['user_id'];
- $this->_m->room_id = $data['room_id'];
- $this->_m->message = $data['message'];
- $this->_m->notification_type = $data['notification_type'];
- $this->_m->sent_at = $data['sent_at'];
+
+//            $this->_m->user_id = $data['user_id'];
+//            $this->_m->room_id = $data['room_id'];
+//            $this->_m->message = $data['message'];
+//            $this->_m->notification_type = $data['notification_type'];
+//            $this->_m->sent_at = $data['sent_at'];
+            $this->_m->status = 'read';
 
             $this->_m->updated_by = auth()->id();
 

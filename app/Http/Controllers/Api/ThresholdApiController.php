@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 use App\Models\Room;
- use App\Models\User;
- 
+use App\Models\User;
+
 
 class ThresholdApiController extends Controller
 {
@@ -41,10 +41,10 @@ class ThresholdApiController extends Controller
     {
         try {
             $data = $request->validate([
-'room_id' => 'required',
-'min_temperature' => 'required|decimal',
-'max_temperature' => 'required|decimal',
-]);
+                'room_id' => 'required',
+                'min_temperature' => 'required|numeric',
+                'max_temperature' => 'required|numeric',
+            ]);
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;
 
@@ -91,10 +91,10 @@ class ThresholdApiController extends Controller
     {
         try {
             $data = $request->validate([
-'room_id' => 'required',
-'min_temperature' => 'required|decimal',
-'max_temperature' => 'required|decimal',
-]);
+                'room_id' => 'required',
+                'min_temperature' => 'required|numeric',
+                'max_temperature' => 'required|numeric',
+            ]);
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;
 

@@ -1,0 +1,15 @@
+meta {
+  name: Specific User Notification
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/notifications?options[user_id]=1
+  body: none
+  auth: inherit
+}
+
+params:query {
+  options[user_id]: 1
+}

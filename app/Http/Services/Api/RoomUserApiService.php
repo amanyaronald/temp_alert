@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
  use App\Models\Room;
- 
+
 
 class RoomUserApiService implements ServiceInterface
 {
@@ -33,9 +33,12 @@ class RoomUserApiService implements ServiceInterface
 
             $builder = $this->_m->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
-                    
+
                 });
-            });
+            })->with([
+                'user',
+                'room.farm.user'
+            ]);
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -63,7 +66,10 @@ class RoomUserApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with([
+                'user',
+                'room.farm.user'
+            ])->find($id);
             if (!$data) {
                 return [
                     'status' => 0,
@@ -173,7 +179,7 @@ $rooms = Room::all();
         try {
             $data = $request->data;
 
-            
+
  $this->_m->user_id = $data['user_id'];
  $this->_m->room_id = $data['room_id'];
  $this->_m->access_level = $data['access_level'];
@@ -220,7 +226,7 @@ $rooms = Room::all();
 
             ##DATA FILLING
 
-            
+
  $this->_m->user_id = $data['user_id'];
  $this->_m->room_id = $data['room_id'];
  $this->_m->access_level = $data['access_level'];

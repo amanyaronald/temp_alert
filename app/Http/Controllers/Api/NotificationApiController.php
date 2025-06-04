@@ -92,13 +92,14 @@ class NotificationApiController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = $request->validate([
-                'user_id' => 'required',
-                'room_id' => 'required',
-                'message' => 'required',
-                'notification_type' => 'required',
-                'sent_at' => 'required',
-            ]);
+//            $data = $request->validate([
+//                'user_id' => 'required',
+//                'room_id' => 'required',
+//                'message' => 'required',
+//                'notification_type' => 'required',
+//                'sent_at' => 'required',
+//            ]);
+            $data = [];
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Room;
  use App\Models\User;
- 
+
 
 class SensorApiService implements ServiceInterface
 {
@@ -33,9 +33,9 @@ class SensorApiService implements ServiceInterface
 
             $builder = $this->_m->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
-                    
+
                 });
-            });
+            })->with('room.farm.user');
             if ($request->options) {
                 $builder = apply_filters($builder, $request->options);
             }
@@ -63,7 +63,7 @@ class SensorApiService implements ServiceInterface
     public function show(Request $request, $id)
     {
         try {
-            $data = $this->_m->find($id);
+            $data = $this->_m->with('room.farm.user')->find($id);
             if (!$data) {
                 return [
                     'status' => 0,
@@ -173,7 +173,7 @@ $users = User::LP()->get();
         try {
             $data = $request->data;
 
-            
+
  $this->_m->room_id = $data['room_id'];
  $this->_m->sensor_name = $data['sensor_name'];
  $this->_m->sensor_type = $data['sensor_type'];
@@ -222,7 +222,7 @@ $users = User::LP()->get();
 
             ##DATA FILLING
 
-            
+
  $this->_m->room_id = $data['room_id'];
  $this->_m->sensor_name = $data['sensor_name'];
  $this->_m->sensor_type = $data['sensor_type'];

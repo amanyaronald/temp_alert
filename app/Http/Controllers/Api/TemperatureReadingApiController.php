@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 use App\Models\Sensor;
- use App\Models\User;
- 
+use App\Models\User;
+
 
 class TemperatureReadingApiController extends Controller
 {
@@ -41,10 +41,10 @@ class TemperatureReadingApiController extends Controller
     {
         try {
             $data = $request->validate([
-'sensor_id' => 'required',
-'temperature_value' => 'required|decimal',
-'recorded_at' => 'required',
-]);
+                'sensor_id' => 'required',
+                'temperature_value' => 'required|numeric',
+                'recorded_at' => 'required',
+            ]);
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;
 
@@ -91,10 +91,10 @@ class TemperatureReadingApiController extends Controller
     {
         try {
             $data = $request->validate([
-'sensor_id' => 'required',
-'temperature_value' => 'required|decimal',
-'recorded_at' => 'required',
-]);
+                'sensor_id' => 'required',
+                'temperature_value' => 'required|numeric',
+                'recorded_at' => 'required',
+            ]);
             // $data['file'] = $this->uploadFile($request, 'file', ['required']);
             $request->data = $data;
 
