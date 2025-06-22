@@ -11,5 +11,4 @@ Artisan::command('inspire', function () {
 
 Schedule::call(function () {
     (new Mkr)->scheduledReport();
-//})->everyFiveMinutes();
-})->everyTenSeconds();
+})->everyFiveMinutes();
