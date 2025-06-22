@@ -342,12 +342,17 @@ class ThresholdApiService implements ServiceInterface
             "message" => "SET_MAX={$max};SET_MIN={$min}",
         ]);
 
-        return Model::call($request, 'Sms', 'sendMessage');
+        $data = Model::call($request, 'Sms', 'sendMessage');
+        return [
+            'status' => 1,
+            'message' => 'Sensor updated successfully',
+            'data' => $data
+        ];
+
     }
 
     public function sendNotification($room,$message)
     {
-
         #get all users of a room
         $room_users = RoomUser::where('room_id', $room)->get();
 
