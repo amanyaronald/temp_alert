@@ -334,7 +334,7 @@ class ThresholdApiService implements ServiceInterface
     public function updateSensor($min, $max)
     {
         $phone = env('SENSOR_PHONE_NO');
-        if (!$phone) return ['status' => 0, 'message' => 'SENSOR_PHONE_NO config missing in env'];
+        if (!$phone) return ['status' => 0, 'message' => 'SENSOR_PHONE_NO config missing in env','data' => null];
         ## send message sms to sensor to update it
         $request = request();
         $request->merge([
