@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Api;
 
+use Illuminate\Support\Facades\Log;
 use Sensy\Scrud\app\Http\Interfaces\ServiceInterface;
 use Illuminate\Http\Request;
 use Exception;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Room;
  use App\Models\Sensor;
  use App\Models\User;
- 
+
 
 class AlertLogApiService implements ServiceInterface
 {
@@ -34,7 +35,7 @@ class AlertLogApiService implements ServiceInterface
 
             $builder = $this->_m->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
-                    
+
                 });
             });
             if ($request->options) {
@@ -176,15 +177,18 @@ $users = User::LP()->get();
         try {
             $data = $request->data;
 
-            
+            Log::debug("REQUEST--",[$request]);
+
+
  $this->_m->room_id = $data['room_id'];
  $this->_m->sensor_id = $data['sensor_id'];
  $this->_m->temperature_value = $data['temperature_value'];
  $this->_m->alert_type = $data['alert_type'];
  $this->_m->triggered_at = $data['triggered_at'];
+ $this->_m->status = $data['status'];
  $this->_m->resolved_at = $data['resolved_at'];
 
-            $this->_m->created_by = auth()->id();
+            $this->_m->created_by = 1; ##take 1
             $this->_m->save();
 
             DB::commit();
@@ -226,7 +230,7 @@ $users = User::LP()->get();
 
             ##DATA FILLING
 
-            
+
  $this->_m->room_id = $data['room_id'];
  $this->_m->sensor_id = $data['sensor_id'];
  $this->_m->temperature_value = $data['temperature_value'];

@@ -10,6 +10,10 @@ put {
   auth: inherit
 }
 
+params:path {
+  id: 1
+}
+
 headers {
   Accept: application/json
 }
@@ -17,7 +21,7 @@ headers {
 body:json {
   {
       "room_id": "1",
-      "min_temperature": "10",
-      "max_temperature": "40"
+      "min_temperature": "20",
+      "max_temperature": "29"
   }
 }

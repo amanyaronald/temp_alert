@@ -101,3 +101,18 @@ if (!function_exists("log_exception")) {
         \Log::debug("===========================================================");
     }
 }
+
+
+if (!function_exists("l_config")) {
+    function l_config($name)
+    {
+        return \App\Models\Config::firstWhere('name',$name);
+    }
+}
+
+if (!function_exists("l_config_value")) {
+    function l_config_value($name)
+    {
+        return l_config($name)?->k_value;
+    }
+}

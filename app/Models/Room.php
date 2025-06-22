@@ -15,4 +15,8 @@ class Room extends Model
         return $this->belongsTo(Farm::class, 'farm_id');
     }
 
+    public function threshold(){
+        return $this->hasOne(Threshold::class);
+    }
+
 }

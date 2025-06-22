@@ -26,19 +26,21 @@ Route::middleware(['auth'])->group(function () {
 Route::get('sms/webhook', function () {
 
     $req = request();
+
     $req->merge([
         "SmsStatus" => 'success',
         "SmsSid" => Str::random(10),
         "SmsMessageSid" => Str::random(10),
         "MessageSid" => Str::random(10),
         "From" => '256783940334',
-        "Body" => 'Sent from your Twilio Trial account -sensor=1;temp=25.6;type=alert;status=normal',
+        "Body" => $req->Body,
     ]);
 
-
     return Model::call(request(), 'Sms', 'webhook');
-});
+})->name('smsWebhook');
 
+
+##FOR TESTING ONLY
 Route::get('sendSms', function () {
 
     $req = request();
@@ -49,5 +51,5 @@ Route::get('sendSms', function () {
 
     return Model::call(request(), 'Sms', 'sendMessage');
 });
-
+##FOR TESTING ONLY
 require __DIR__ . '/auth.php';

@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $token = $user->createToken('api_token')->plainTextToken;
-        dump($token);
+
+        $this->call([
+            ConfigSeeder::class
+        ]);
         ## create token
 
     }

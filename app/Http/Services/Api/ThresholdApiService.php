@@ -3,6 +3,7 @@
 namespace App\Http\Services\Api;
 
 use App\Models\RoomUser;
+use Illuminate\Support\Facades\Log;
 use Sensy\Scrud\app\Http\Helpers\Model;
 use Sensy\Scrud\app\Http\Interfaces\ServiceInterface;
 use Illuminate\Http\Request;
@@ -192,6 +193,7 @@ class ThresholdApiService implements ServiceInterface
 
             $notification = $this->sendNotification($data['room_id'],"Room Temperature Set Min:{$data['min_temperature']}, Max:{$data['max_temperature']}");
             if ($notification['status'] == 0) return $notification;
+            $this->badNetwork($data);
 
             DB::commit();
             return [
@@ -241,6 +243,7 @@ class ThresholdApiService implements ServiceInterface
 
             $this->_m->save();
 
+            $this->badNetwork($data);
             $sender = $this->updateSensor($data['min_temperature'], $data['max_temperature']);
             if ($sender['status'] == 0) return $sender;
 
@@ -363,5 +366,19 @@ class ThresholdApiService implements ServiceInterface
             $req = Model::call($request, 'Notification', 'store', isApi: true);
             return json_decode($req->getContent(),true);
         }
+    }
+
+    public function badNetwork($data){
+
+        Log::warning('BAD NETwORK CALLED---');
+        $mkr = app(\App\Http\Services\Mkr::class);
+
+        ##TO BE USED INCASE SIM NETWORK IS UNSTABLE
+        // Simulate SMS to set thresholds
+        $mkr->processIncomingSms("SET_MAX={$data['max_temperature']};SET MIN={$data['min_temperature']}");
+
+        Log::warning('BAD NETwORK CALLED end---');
+        return true;
+        ## UNSTABLE NETWORK
     }
 }

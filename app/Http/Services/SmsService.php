@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\AlertLog;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\TemperatureReading;
 use App\Models\Sensor;
@@ -49,6 +50,7 @@ class SmsService
                     'temperature_value' => $data['temp'],
                     'status' => $data['status'],
                     'received_from' => $from,
+                    'type' => in_array($data['status'],['low','high']) ? 'alert': 'normal'
                 ];
 
                 // Store temperature reading
@@ -56,26 +58,32 @@ class SmsService
                 $req = Model::call($request, 'TemperatureReading', 'store',isApi: true);
                 $req = json_decode($req->getContent(),true);
 
+
+
                 if ($req['status'] == 0) return $req;
 
                 // If it's an alert, store in alerts table
                 if (isset($data['type']) && strtolower($data['type']) === 'alert') {
-                    $sensor = Sensor::find($data['sensor']);
+                    $sensor = Sensor::find($data['sensor_id']);
 
                     if ($sensor) {
 
                         $alert = [
                             'room_id' => $sensor->room_id,
                             'sensor_id' => $sensor->id,
-                            'temperature_value' => $data['temp'],
+                            'temperature_value' => $data['temperature_value'],
                             'alert_type' => $data['status'],
                             'triggered_at' => now(),
                             'status' => 'triggered',
+                            'resolved_at'=>null,
                             'created_by' => 1, // Assuming 1 - System
                         ];
 
-                        $request->merge(['data' => $alert]);
-                        $req = Model::call($request, 'TemperatureReading', 'store');
+                        $req = new Request();
+                        $req->merge(['data' => $alert]);
+
+                        $req = Model::call($req, 'AlertLog', 'store',isApi: true);
+                        $req = json_decode($req->getContent(),true);
                         return $req;
                     }
 
